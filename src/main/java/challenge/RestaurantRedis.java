@@ -4,8 +4,9 @@ public class RestaurantRedis {
 
 	private String id;
 	private String name;
-	private Double x;
-	private Double y;
+	private double x;
+	private double y;
+	
 	public String getId() {
 		return id;
 	}
@@ -18,16 +19,16 @@ public class RestaurantRedis {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Double getX() {
+	public double getX() {
 		return x;
 	}
-	public void setX(Double x) {
+	public void setX(double x) {
 		this.x = x;
 	}
-	public Double getY() {
+	public double getY() {
 		return y;
 	}
-	public void setY(Double y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 }

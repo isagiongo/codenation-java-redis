@@ -8,6 +8,12 @@ public class NeighborhoodRedis {
 	private String name;
 	private List<RestaurantRedis> restaurants;
 	
+	public NeighborhoodRedis() {}
+	
+	public NeighborhoodRedis(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 	public String getId() {
 		return id;
 	}
@@ -26,4 +32,10 @@ public class NeighborhoodRedis {
 	public void setRestaurants(List<RestaurantRedis> restaurants) {
 		this.restaurants = restaurants;
 	}
+	public static NeighborhoodRedis fromMongo(NeighborhoodMongo neighborhoodMongo) {
+        final NeighborhoodRedis neighborhoodRedis = new NeighborhoodRedis();
+        neighborhoodRedis.setId(neighborhoodMongo.getId());
+        neighborhoodRedis.setName(neighborhoodMongo.getName());
+        return neighborhoodRedis;
+    }
 }

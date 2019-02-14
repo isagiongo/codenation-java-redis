@@ -12,6 +12,13 @@ public class NeighborhoodMongo {
 	private String name;
 	private GeoJsonPolygon geometry;
 	
+	public NeighborhoodMongo() {}
+	
+	public NeighborhoodMongo(String id, String name, GeoJsonPolygon geometry) {
+		this.id = id;
+		this.name = name;
+		this.geometry = geometry;
+	}
 	public String getId() {
 		return id;
 	}

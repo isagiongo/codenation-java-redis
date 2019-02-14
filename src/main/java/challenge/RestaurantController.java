@@ -11,8 +11,8 @@ public class RestaurantController {
 	@Autowired
 	private RestaurantService restauranteService;
 
-	@GetMapping(value="/restaurants/findInNeighborhood/")
-	public NeighborhoodRedis findInNeighborhood(@RequestParam Double x, @RequestParam Double y) {
+	@GetMapping("/restaurants/findInNeighborhood")
+	public NeighborhoodRedis findInNeighborhood(@RequestParam double x, @RequestParam double y) {
 		return restauranteService.findInNeighborhood(x, y);
 	}
 }

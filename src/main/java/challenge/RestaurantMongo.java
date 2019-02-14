@@ -3,6 +3,7 @@ package challenge;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.redis.core.index.GeoIndexed;
 
 @Document(collection="restaurant")
 public class RestaurantMongo {
@@ -10,6 +11,8 @@ public class RestaurantMongo {
 	@Id
 	private String id;
 	private String name;
+	
+	@GeoIndexed
 	private GeoJsonPoint location;
 	
 	public String getId() {
