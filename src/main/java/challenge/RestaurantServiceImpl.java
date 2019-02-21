@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,8 +20,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	//@Autowired
-	private RedisOperations<String, NeighborhoodRedis> redisRedisOperations;
+//	@Autowired
+	private RedisTemplate<String, NeighborhoodRedis> redisTemplate;
 	
 	//Busca o bairro atraves dos pontos x e y
 	//Busca se está salvo no redis esse bairro
@@ -29,14 +30,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 	public NeighborhoodRedis findInNeighborhood(double x, double y) {
 		NeighborhoodMongo neighborhoodMongo = findNeighborhood(x, y);
 		String key = "neighborhood:" + neighborhoodMongo.getId();
-        NeighborhoodRedis neighborhoodRedis = redisRedisOperations.opsForValue().get(key);
+        NeighborhoodRedis neighborhoodRedis = redisTemplate.opsForValue().get(key);
         if (neighborhoodRedis == null) {
             neighborhoodRedis = NeighborhoodRedis.fromMongo(neighborhoodMongo);
             neighborhoodRedis.setRestaurants(findAllInNeighborhood(neighborhoodMongo)
                             .stream().sequential()
                             .map(this::restaurantMongoToRedis)
                             .collect(Collectors.toList()));
-            redisRedisOperations.opsForValue().set(key, neighborhoodRedis);
+            redisTemplate.opsForValue().set(key, neighborhoodRedis);
         }
         return neighborhoodRedis;
     }
