@@ -15,6 +15,12 @@ public class RestaurantMongo {
 	@GeoIndexed
 	private GeoJsonPoint location;
 	
+	public RestaurantMongo(String id, String name, GeoJsonPoint location) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+    }
+	
 	public String getId() {
 		return id;
 	}

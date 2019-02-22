@@ -2,6 +2,9 @@ package challenge;
 
 import java.util.List;
 
+import org.springframework.data.redis.core.RedisHash;
+
+@RedisHash(value = "neighborhood")
 public class NeighborhoodRedis {
 
 	private String id;
