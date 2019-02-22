@@ -20,13 +20,6 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 	
-	@Autowired 
-	private NeighborhoodRedisRepository neighborhoodRedisRepository;
-	
-	@Autowired 
-	private RestaurantMongoRepository restaurantMongoRepository;
-	
-	
 	@Autowired
 	private RedisTemplate<String, NeighborhoodRedis> redisTemplate;
 	
